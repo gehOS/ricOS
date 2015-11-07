@@ -2,14 +2,8 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-<<<<<<< HEAD
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
-=======
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             d:DesignHeight="212.8"
-             d:DesignWidth="465.6"
-             mc:Ignorable="d">
->>>>>>> a031b25480c83acea9322464760fa95fd08ccb32
+
     <Grid Name="RootLayout">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
