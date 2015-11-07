@@ -8,6 +8,6 @@ namespace GEH_OSSimulator.Interfaces
 {
     public interface IProgram
     {
-        public event EventHandler OnCloseProgram;
+        event EventHandler OnCloseProgram;
     }
 }
