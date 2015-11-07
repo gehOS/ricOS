@@ -31,5 +31,30 @@ namespace GEH_OSSimulator.UserControls
                 lbProcesses.Items.Add(process);
             }
         }
+
+        private void btnRun_Click(object sender, RoutedEventArgs e)
+        {
+            Random r = new Random();
+            int processID = r.Next(1, 9999);
+            int processThread = r.Next(1, 40);
+            string processName = tbProcess.Text;
+
+            string UserProcess = string.Format("{0} | {1} | {2}", processName, processID.ToString(), processThread.ToString());
+            lbProcesses.Items.Add(UserProcess);
+
+            tbProcess.Text = string.Empty;
+            tbProcess.Focus();
+        }
+
+        public void Ejecutar(string proceso)
+        {
+            Random rand = new Random();
+            int IDproceso = rand.Next(1, 9999);
+            int HilosProceso = rand.Next(1, 40);
+            string NombreProceso = proceso;
+
+            string ProcesoInput = string.Format("{0} | {1} | {2}", NombreProceso, IDproceso.ToString(), HilosProceso.ToString());
+            lbProcesses.Items.Add(ProcesoInput);
+        }
     }
 }

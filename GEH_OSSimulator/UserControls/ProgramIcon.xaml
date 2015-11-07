@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="GEH_OSSimulator.UserControls.ProgramIcon"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             Width="100"
+             Height="130"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <!--  This style is used for buttons, to remove the WPF default 'animated' mouse over effect  -->
+        <Style x:Key="MyButtonStyle" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="DarkGray"
+                                BorderThickness="0"
+                                CornerRadius="3"
+                                Padding="4,2">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="Black" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <Image x:Name="IconImage" Margin="10" />
+        <Grid Grid.RowSpan="2"
+              Margin="5"
+              Panel.ZIndex="-1"
+              Background="Aqua"
+              IsEnabled="False"
+              Opacity=".4" />
+        <Button Grid.ColumnSpan="2"
+                Background="Transparent"
+                BorderBrush="Transparent"
+                MouseRightButtonUp="Grid_MouseRightButtonUp"
+                Style="{StaticResource MyButtonStyle}" />
+        <Label Grid.Row="1"
+               HorizontalContentAlignment="Center"
+               VerticalContentAlignment="Center"
+               Content="Nombre de programa"
+               FontSize="10" />
+    </Grid>
+
+</UserControl>

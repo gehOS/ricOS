@@ -5,8 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GEH_OSSimulator"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" Width="484.962">
     <Grid>
-        <ListBox x:Name="lbProcesses" HorizontalAlignment="Left" Height="280" Margin="10,10,0,0" VerticalAlignment="Top" Width="280"/>
+        <ListBox x:Name="lbProcesses" HorizontalAlignment="Left" Height="280" Margin="10,10,0,0" VerticalAlignment="Top" Width="253"/>
+        <Button x:Name="btnRun" Content="Run" HorizontalAlignment="Left" Margin="281,94,0,0" VerticalAlignment="Top" Width="110" Height="50" Click="btnRun_Click"/>
+        <TextBox x:Name="tbProcess" HorizontalAlignment="Left" Height="32" Margin="281,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="192"/>
+        <Label x:Name="lblProcessName" Content="Process name" HorizontalAlignment="Left" Margin="281,10,0,0" VerticalAlignment="Top" Width="91"/>
     </Grid>
 </UserControl>
