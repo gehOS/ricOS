@@ -56,6 +56,9 @@
     <Compile Include="UserControls\Desktop.xaml.cs">
       <DependentUpon>Desktop.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\OS_Loading.xaml.cs">
+      <DependentUpon>OS_Loading.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\DesktopViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -72,6 +75,10 @@
     <Page Include="UserControls\Desktop.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\OS_Loading.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -100,6 +107,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UserControls\Imagenes\RickOS2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
