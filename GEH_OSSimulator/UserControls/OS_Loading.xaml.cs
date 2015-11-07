@@ -34,7 +34,16 @@ namespace GEH_OSSimulator.UserControls
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
             if (i == 2000)
+            {
                 dispatcherTimer.Stop();
+                LabelRicOS.Visibility = System.Windows.Visibility.Hidden;
+                loadingBar.Visibility = System.Windows.Visibility.Hidden;
+                loadingText.Visibility = System.Windows.Visibility.Hidden;
+                labelBienvenido.Visibility = System.Windows.Visibility.Visible;
+            }
+
+            if (i == 0)
+                _loadText = "Loading drivers...";
 
             if (i == 500)
                 _loadText = "Loading system...";
@@ -56,13 +65,14 @@ namespace GEH_OSSimulator.UserControls
 
 
             loadingBar.Value = i;
-            loadingText.Content =_loadText;
+            loadingText.Content = _loadText;
 
             i++;
          
         }
         private void gridOS_Initialized(object sender, EventArgs e)
         {
+            labelBienvenido.Visibility = System.Windows.Visibility.Hidden;
             dispatcherTimer.Tick += dispatcherTimer_Tick;
             dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 1);
             dispatcherTimer.Start();

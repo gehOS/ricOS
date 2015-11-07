@@ -6,9 +6,10 @@
              xmlns:local="clr-namespace:GEH_OSSimulator.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid x:Name="gridOS" HorizontalAlignment="Left" Background="Black" Initialized="gridOS_Initialized">
-        <Image x:Name="Imagenes_RickOS2_png" Margin="23.334,81.333,20.666,108" Source="Imagenes/RickOS2.png" Stretch="Fill" HorizontalAlignment="Center"/>
+    <Grid x:Name="gridOS" Background="Black" Initialized="gridOS_Initialized">
         <ProgressBar x:Name="loadingBar" Height="10" Margin="51.333,0,51,69.334" VerticalAlignment="Bottom" Maximum="2000"/>
         <Label x:Name="loadingText" Content="Label" Margin="178.332,0,171.673,40.534" VerticalAlignment="Bottom" Foreground="White" FontFamily="Arial" HorizontalContentAlignment="Center"/>
+        <Label x:Name="LabelRicOS" Content="RicOS" HorizontalAlignment="Center" Margin="6,83,0,0" VerticalAlignment="Top" FontFamily="Arial" FontSize="96" Foreground="White"/>
+        <Label x:Name="labelBienvenido" Content="Bienvenido Ricardo M." HorizontalAlignment="Center" Margin="10,120,0,0" VerticalAlignment="Center" Foreground="White" FontFamily="Arial" FontSize="26.667"/>
     </Grid>
 </UserControl>
