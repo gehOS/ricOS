@@ -53,9 +53,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="TaskManager.xaml.cs">
-      <DependentUpon>TaskManager.xaml</DependentUpon>
+    <Compile Include="UserControls\Desktop.xaml.cs">
+      <DependentUpon>Desktop.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\DesktopViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -68,7 +69,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="TaskManager.xaml">
+    <Page Include="UserControls\Desktop.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
