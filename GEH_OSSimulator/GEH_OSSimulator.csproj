@@ -53,11 +53,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Interfaces\IProgram.cs" />
     <Compile Include="UserControls\Programas\Antivirus.xaml.cs">
       <DependentUpon>Antivirus.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Programas\NotePad.xaml.cs">
       <DependentUpon>NotePad.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ProgramIcon.xaml.cs">
+      <DependentUpon>ProgramIcon.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\TaskManager.xaml.cs">
       <DependentUpon>TaskManager.xaml</DependentUpon>
@@ -86,6 +90,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Programas\NotePad.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ProgramIcon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
