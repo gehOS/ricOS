@@ -6,10 +6,10 @@
              xmlns:local="clr-namespace:GEH_OSSimulator.UserControls.Programas"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid Background="White">
-        <TextBox x:Name="textBoxNotepad" HorizontalAlignment="Left" Height="266" Margin="7,27,0,0" TextWrapping="Wrap" Text="Hola :)" VerticalAlignment="Top" Width="284"/>
+    <Grid x:Name="GridNotepad" Background="White">
+        <TextBox x:Name="textBoxNotepad" HorizontalAlignment="Left" Margin="0,27,0,0" TextWrapping="Wrap" Text="Hola :)" VerticalAlignment="Top" Height="{Binding ElementName=GridNotepad,Path=ActualHeight}" Width="{Binding ElementName=GridNotepad,Path=ActualWidth}" Padding="10"/>
         <Label x:Name="labelTitle" Content="Notepad" HorizontalAlignment="Left" Margin="9,1,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btnClose" Content="X" HorizontalAlignment="Left" Margin="261,4,0,0" VerticalAlignment="Top" Width="29"/>
+        <Button x:Name="btnClose" Content="X" HorizontalAlignment="Right" Margin="261,4,0,0" VerticalAlignment="Top" Width="29"/>
 
     </Grid>
 </UserControl>
