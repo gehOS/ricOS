@@ -53,6 +53,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Interfaces\IProgram.cs" />
+    <Compile Include="UserControls\Programas\Antivirus.xaml.cs">
+      <DependentUpon>Antivirus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Programas\NotePad.xaml.cs">
+      <DependentUpon>NotePad.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ProgramIcon.xaml.cs">
+      <DependentUpon>ProgramIcon.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\TaskManager.xaml.cs">
       <DependentUpon>TaskManager.xaml</DependentUpon>
     </Compile>
@@ -75,6 +85,18 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UserControls\Programas\Antivirus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Programas\NotePad.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ProgramIcon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\TaskManager.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -118,6 +140,7 @@
   <ItemGroup>
     <Resource Include="UserControls\Imagenes\RickOS2.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

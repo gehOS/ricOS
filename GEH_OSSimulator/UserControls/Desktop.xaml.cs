@@ -43,13 +43,14 @@ namespace GEH_OSSimulator.UserControls
         private void Grid_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
-            fileDialog.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|";
+            fileDialog.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png;";
             if (fileDialog.ShowDialog() == true) {
                 var backgroundImage = new Image();
                 backgroundImage.Source = new BitmapImage(new Uri(fileDialog.FileName));
                 var imageBrush = new ImageBrush();
                 imageBrush.ImageSource = backgroundImage.Source;
-                ViewModel.BackgroundGrid.Background = imageBrush;
+                //ViewModel.BackgroundGrid.Background = imageBrush;
+                BackgroundGrid.Background = imageBrush;
             }
                 
 

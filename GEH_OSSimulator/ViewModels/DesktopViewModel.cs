@@ -9,14 +9,14 @@ using System.Windows.Controls;
 
 namespace GEH_OSSimulator.ViewModels
 {
-    public class DesktopViewModel : INotifyPropertyChanged
+    public class DesktopViewModel 
     {
         public Grid BackgroundGrid
         {
             get;
             set;
         }
-        protected bool SetField<T>(ref T field, T value,
-    [CallerMemberName] string propertyName = null);
+    //    protected bool SetField<T>(ref T field, T value,
+    //[CallerMemberName] string propertyName = null);
     }
 }
