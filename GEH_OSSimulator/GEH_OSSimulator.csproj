@@ -60,6 +60,9 @@
     <Compile Include="UserControls\Programas\NotePad.xaml.cs">
       <DependentUpon>NotePad.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Programas\RunApp.xaml.cs">
+      <DependentUpon>RunApp.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ProgramIcon.xaml.cs">
       <DependentUpon>ProgramIcon.xaml</DependentUpon>
     </Compile>
@@ -92,6 +95,10 @@
     <Page Include="UserControls\Programas\NotePad.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Programas\RunApp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\ProgramIcon.xaml">
       <SubType>Designer</SubType>
@@ -140,7 +147,9 @@
   <ItemGroup>
     <Resource Include="UserControls\Imagenes\RickOS2.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="UserControls\Imagenes\Run.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
