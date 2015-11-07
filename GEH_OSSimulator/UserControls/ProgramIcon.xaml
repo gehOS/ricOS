@@ -7,7 +7,7 @@
              Height="130"
              mc:Ignorable="d">
     <UserControl.Resources>
-        <!--  This style is used for buttons, to remove the WPF default 'animated' mouse over effect  -->
+
         <Style x:Key="MyButtonStyle" TargetType="Button">
             <Setter Property="OverridesDefaultStyle" Value="True" />
             <Setter Property="Margin" Value="5" />
@@ -32,27 +32,29 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Grid>
+    <Grid MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave">
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
-        <Image x:Name="IconImage" Margin="10" />
-        <Grid Grid.RowSpan="2"
+        <Image x:Name="IconImage"
+               Margin="10"
+               Source="{Binding ImageSource}" />
+        <Grid x:Name="GridSelectable"
+              Grid.RowSpan="2"
               Margin="5"
               Panel.ZIndex="-1"
               Background="Aqua"
-              IsEnabled="False"
-              Opacity=".4" />
-        <Button Grid.ColumnSpan="2"
-                Background="Transparent"
-                BorderBrush="Transparent"
-                MouseRightButtonUp="Grid_MouseRightButtonUp"
+              Opacity=".4"
+              Visibility="Hidden" />
+        <Button x:Name="ButtonSelector"
+                Grid.RowSpan="2"
+                Grid.ColumnSpan="2"
                 Style="{StaticResource MyButtonStyle}" />
         <Label Grid.Row="1"
                HorizontalContentAlignment="Center"
                VerticalContentAlignment="Center"
-               Content="Nombre de programa"
+               Content="{Binding ProgramString}"
                FontSize="10" />
     </Grid>
 

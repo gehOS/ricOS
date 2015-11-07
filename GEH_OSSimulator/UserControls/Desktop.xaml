@@ -46,20 +46,31 @@
         </Grid.ColumnDefinitions>
         <Grid x:Name="BackgroundGrid"
               Grid.ColumnSpan="2"
-              MouseRightButtonUp="Grid_MouseRightButtonUp" />
-        <Button Grid.ColumnSpan="2"
-                Background="Transparent"
-                BorderBrush="Transparent"
-                MouseRightButtonUp="Grid_MouseRightButtonUp"
-                Style="{StaticResource MyButtonStyle}" />
+              MouseRightButtonUp="Grid_MouseRightButtonUp">
+            <StackPanel x:Name="IconPanel"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Orientation="Horizontal" />
+            <Button Panel.ZIndex="-1"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    MouseRightButtonUp="Grid_MouseRightButtonUp"
+                    Style="{StaticResource MyButtonStyle}" />
 
-        <Button Grid.Row="1"
-                Width="80"
-                Content="Inicio" />
+        </Grid>
+
+        <Grid x:Name="StartMenuGrid"
+              Margin="0,50,-40,0"
+              Background="" />
+        <ToggleButton Grid.Row="1"
+                      Width="80"
+                      Content="Inicio" />
         <Grid Grid.Row="1"
               Grid.Column="1"
               Background="Black">
-            <Label Content="" />
+            <Label HorizontalContentAlignment="Right"
+                   Content="La hora"
+                   Foreground="White" />
         </Grid>
     </Grid>
 </UserControl>

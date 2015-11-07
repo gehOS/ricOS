@@ -20,9 +20,24 @@ namespace GEH_OSSimulator.UserControls
     /// </summary>
     public partial class ProgramIcon : UserControl
     {
+        public ImageBrush ImageSource { get; set; }
+        public string ProgramString { get; set; }
+        public string ProcessName { get; set; }
         public ProgramIcon()
         {
             InitializeComponent();
+            DataContext = this;
         }
+
+        private void Grid_MouseEnter(object sender, MouseEventArgs e)
+        {
+            GridSelectable.Visibility = Visibility.Visible;
+        }
+
+        private void Grid_MouseLeave(object sender, MouseEventArgs e)
+        {
+            GridSelectable.Visibility = Visibility.Hidden;
+        }
+
     }
 }

@@ -37,8 +37,35 @@ namespace GEH_OSSimulator.UserControls
         {
             InitializeComponent();
             this.DataContext = ViewModel;
+            CreateProgramIcon(@"http://icons.iconarchive.com/icons/dakirby309/windows-8-metro/256/Apps-Task-Manager-alt-2-Metro-icon.png", "taskManager", "Task Manager");
+            CreateProgramIcon(@"http://icons.iconarchive.com/icons/tpdkdesign.net/refresh-cl/256/Windows-Run-icon.png", "run", "Run");
+            CreateProgramIcon(@"https://cdn2.iconfinder.com/data/icons/metro-uinvert-dock/256/Other_Antivirus_Software.png", "antivirus", "Antivirus");
+            CreateProgramIcon(@"https://upload.wikimedia.org/wikipedia/en/2/2a/Notepad.png", "notepad", "Notepad");
             
         }
+
+        void CreateProgramIcon(string url, string programString, string processName) {
+            var taskIcon = new Image();
+            taskIcon.Source = new BitmapImage(new Uri(url));
+            var imageBrush = new ImageBrush();
+            imageBrush.ImageSource = taskIcon.Source;
+            var taskManager = new ProgramIcon() { 
+                ProgramString = programString,
+                ProcessName = processName
+            };
+            taskManager.IconImage.Source = imageBrush.ImageSource;
+            
+            taskManager.ButtonSelector.MouseDoubleClick += taskManager_MouseDoubleClick;
+            IconPanel.Children.Add(taskManager);
+            
+        }
+
+        void taskManager_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+
 
         private void Grid_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
@@ -49,11 +76,8 @@ namespace GEH_OSSimulator.UserControls
                 backgroundImage.Source = new BitmapImage(new Uri(fileDialog.FileName));
                 var imageBrush = new ImageBrush();
                 imageBrush.ImageSource = backgroundImage.Source;
-                //ViewModel.BackgroundGrid.Background = imageBrush;
                 BackgroundGrid.Background = imageBrush;
             }
-                
-
         }
     }
 }
