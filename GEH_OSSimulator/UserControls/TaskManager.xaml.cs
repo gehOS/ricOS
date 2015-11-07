@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Diagnostics;
 
-namespace GEH_OSSimulator
+namespace GEH_OSSimulator.UserControls
 {
     /// <summary>
     /// Interaction logic for TaskManager.xaml
@@ -24,6 +24,7 @@ namespace GEH_OSSimulator
         public TaskManager()
         {
             InitializeComponent();
+
             foreach (Process p in Process.GetProcesses())
             {
                 string process = string.Format("{0} | {1} | {2}", p.ProcessName, p.Id, p.Threads.Count);
