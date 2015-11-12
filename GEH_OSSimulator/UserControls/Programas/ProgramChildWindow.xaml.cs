@@ -10,31 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Xceed.Wpf.Toolkit;
 
 namespace GEH_OSSimulator.UserControls.Programas
 {
     /// <summary>
-    /// Interaction logic for Run.xaml
+    /// Interaction logic for ProgramChildWindow.xaml
     /// </summary>
-    public partial class RunApp : UserControl
+    public partial class ProgramChildWindow : ChildWindow
     {
-        private static RunApp _instance;
-        public static RunApp Instance
-        {
-            get
-            {
-                if (_instance == null)
-                    _instance = new RunApp();
-                return _instance;
-            }
-            set
-            {
-                _instance = value;
-            }
-        }
-        private RunApp()
+        public ProgramChildWindow()
         {
             InitializeComponent();
         }

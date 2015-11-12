@@ -21,7 +21,21 @@ namespace GEH_OSSimulator.UserControls
     /// </summary>
     public partial class TaskManager : UserControl
     {
-        public TaskManager()
+        private static TaskManager _instance;
+        public static TaskManager Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = new TaskManager();
+                return _instance;
+            }
+            set
+            {
+                _instance = value;
+            }
+        }
+        private TaskManager()
         {
             InitializeComponent();
 

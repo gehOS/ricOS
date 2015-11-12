@@ -54,14 +54,15 @@
             <Button Panel.ZIndex="-1"
                     Background="Transparent"
                     BorderBrush="Transparent"
-                    MouseRightButtonUp="Grid_MouseRightButtonUp"
+                    MouseRightButtonDown="Grid_MouseRightButtonUp"
                     Style="{StaticResource MyButtonStyle}" />
 
         </Grid>
 
         <Grid x:Name="StartMenuGrid"
               Margin="0,50,-40,0"
-              Background="" />
+              Background="White"
+              Visibility="Collapsed" />
         <ToggleButton Grid.Row="1"
                       Width="80"
                       Content="Inicio" />

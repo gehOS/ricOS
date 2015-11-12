@@ -32,7 +32,7 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Grid MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition Height="30" />
@@ -40,7 +40,7 @@
         <Image x:Name="IconImage"
                Margin="10"
                Source="{Binding ImageSource}" />
-        <Grid x:Name="GridSelectable"
+        <Grid x:Name="SelectorGrid"
               Grid.RowSpan="2"
               Margin="5"
               Panel.ZIndex="-1"
@@ -48,9 +48,12 @@
               Opacity=".4"
               Visibility="Hidden" />
         <Button x:Name="ButtonSelector"
-                Grid.RowSpan="2"
-                Grid.ColumnSpan="2"
-                Style="{StaticResource MyButtonStyle}" />
+                Grid.Row="1"
+                Margin="6"
+                Panel.ZIndex="1000"
+                Click="ButtonSelector_Click"
+                Content="Abrir"
+                Visibility="Visible" />
         <Label Grid.Row="1"
                HorizontalContentAlignment="Center"
                VerticalContentAlignment="Center"

@@ -1,4 +1,5 @@
-﻿using GEH_OSSimulator.ViewModels;
+﻿using GEH_OSSimulator.UserControls.Programas;
+using GEH_OSSimulator.ViewModels;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -37,32 +38,42 @@ namespace GEH_OSSimulator.UserControls
         {
             InitializeComponent();
             this.DataContext = ViewModel;
-            CreateProgramIcon(@"http://icons.iconarchive.com/icons/dakirby309/windows-8-metro/256/Apps-Task-Manager-alt-2-Metro-icon.png", "taskManager", "Task Manager");
-            CreateProgramIcon(@"http://icons.iconarchive.com/icons/tpdkdesign.net/refresh-cl/256/Windows-Run-icon.png", "run", "Run");
-            CreateProgramIcon(@"https://cdn2.iconfinder.com/data/icons/metro-uinvert-dock/256/Other_Antivirus_Software.png", "antivirus", "Antivirus");
-            CreateProgramIcon(@"https://upload.wikimedia.org/wikipedia/en/2/2a/Notepad.png", "notepad", "Notepad");
+            CreateProgramIcon(@"http://icons.iconarchive.com/icons/dakirby309/windows-8-metro/256/Apps-Task-Manager-alt-2-Metro-icon.png", TaskManager.Instance , "Task Manager");
+            CreateProgramIcon(@"http://icons.iconarchive.com/icons/tpdkdesign.net/refresh-cl/256/Windows-Run-icon.png", RunApp.Instance, "Run");
+            CreateProgramIcon(@"https://cdn2.iconfinder.com/data/icons/metro-uinvert-dock/256/Other_Antivirus_Software.png", Antivirus.Instance, "Antivirus");
+            CreateProgramIcon(@"https://upload.wikimedia.org/wikipedia/en/2/2a/Notepad.png", new NotePad(), "Notepad");
             
         }
 
-        void CreateProgramIcon(string url, string programString, string processName) {
+        void CreateProgramIcon(string url, UserControl programUc, string processName) {
             var taskIcon = new Image();
             taskIcon.Source = new BitmapImage(new Uri(url));
             var imageBrush = new ImageBrush();
             imageBrush.ImageSource = taskIcon.Source;
             var taskManager = new ProgramIcon() { 
-                ProgramString = programString,
+                ProgramUC = new ProgramChildWindow(),
                 ProcessName = processName
             };
+            taskManager.ProgramUC.Root.Children.Add(programUc);
             taskManager.IconImage.Source = imageBrush.ImageSource;
-            
-            taskManager.ButtonSelector.MouseDoubleClick += taskManager_MouseDoubleClick;
+
+            taskManager.OnLoadUserControl += taskManager_OnLoadUserControl;
             IconPanel.Children.Add(taskManager);
             
         }
 
-        void taskManager_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        void taskManager_OnLoadUserControl(ProgramChildWindow userControl)
         {
-            throw new NotImplementedException();
+            if (userControl.Parent == null)
+            {
+                Panel.SetZIndex(userControl, 100);
+                if (OnProgramOpened != null)
+                    OnProgramOpened(userControl);
+            }
+            else {
+                userControl.Show();   
+            }
+
         }
 
 
@@ -79,5 +90,9 @@ namespace GEH_OSSimulator.UserControls
                 BackgroundGrid.Background = imageBrush;
             }
         }
+
+        public delegate void ProgramOpened(ProgramChildWindow programUC);
+        public event ProgramOpened OnProgramOpened;
+
     }
 }

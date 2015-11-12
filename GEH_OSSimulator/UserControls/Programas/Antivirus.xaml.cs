@@ -23,9 +23,20 @@ namespace GEH_OSSimulator.UserControls.Programas
     {
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
         int i = 0;
+        private static Antivirus _instance;
+        public static Antivirus Instance {
+            get {
+                if (_instance == null)
+                    _instance = new Antivirus();
+                return _instance;
+            }
+            set
+            {
+                _instance = value;
+            }
+        }
 
-
-        public Antivirus()
+        private Antivirus()
         {
             InitializeComponent();
             labelporcen.Visibility = System.Windows.Visibility.Hidden;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GEH_OSSimulator.UserControls.Programas;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,7 +22,7 @@ namespace GEH_OSSimulator.UserControls
     public partial class ProgramIcon : UserControl
     {
         public ImageBrush ImageSource { get; set; }
-        public string ProgramString { get; set; }
+        public ProgramChildWindow ProgramUC { get; set; }
         public string ProcessName { get; set; }
         public ProgramIcon()
         {
@@ -31,12 +32,27 @@ namespace GEH_OSSimulator.UserControls
 
         private void Grid_MouseEnter(object sender, MouseEventArgs e)
         {
-            GridSelectable.Visibility = Visibility.Visible;
+             SelectorGrid.Visibility = Visibility.Visible;
         }
 
         private void Grid_MouseLeave(object sender, MouseEventArgs e)
         {
-            GridSelectable.Visibility = Visibility.Hidden;
+            SelectorGrid.Visibility = Visibility.Hidden;
+        }
+
+        private void ButtonSelector_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (OnLoadUserControl != null)
+                OnLoadUserControl(ProgramUC);
+        }
+
+        public delegate void LoadUserControl(ProgramChildWindow userControl);
+        public event LoadUserControl OnLoadUserControl;
+
+        private void ButtonSelector_Click(object sender, RoutedEventArgs e)
+        {
+            if (OnLoadUserControl != null)
+                OnLoadUserControl(ProgramUC);
         }
 
     }

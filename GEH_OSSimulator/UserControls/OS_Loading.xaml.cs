@@ -35,12 +35,18 @@ namespace GEH_OSSimulator.UserControls
         {
             if (i == 2000)
             {
-                dispatcherTimer.Stop();
                 LabelRicOS.Visibility = System.Windows.Visibility.Hidden;
                 loadingBar.Visibility = System.Windows.Visibility.Hidden;
                 loadingText.Visibility = System.Windows.Visibility.Hidden;
                 labelBienvenido.Visibility = System.Windows.Visibility.Visible;
             }
+
+            if (i == 2200) {
+                if (OnFinishedLoading != null)
+                    OnFinishedLoading();
+                dispatcherTimer.Stop();
+            }
+
 
             if (i == 0)
                 _loadText = "Loading drivers...";
@@ -61,7 +67,9 @@ namespace GEH_OSSimulator.UserControls
                 _loadText = "Almost done ...";
 
             if (i == 1990)
+            {
                 _loadText = "Done ...";
+            }
 
 
             loadingBar.Value = i;
@@ -77,5 +85,8 @@ namespace GEH_OSSimulator.UserControls
             dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 1);
             dispatcherTimer.Start();
         }
+
+        public delegate void FinishedLoading();
+        public event FinishedLoading OnFinishedLoading;
     }
 }
