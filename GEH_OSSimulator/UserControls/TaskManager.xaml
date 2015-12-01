@@ -7,10 +7,25 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" Width="598.872">
     <Grid>
-        <ListBox x:Name="lbProcesses" HorizontalAlignment="Left" Height="280" Margin="10,10,0,0" VerticalAlignment="Top" Width="253"/>
-        <Button x:Name="btnRun" Content="Run" HorizontalAlignment="Left" Margin="281,94,0,0" VerticalAlignment="Top" Width="110" Height="50" Click="btnRun_Click"/>
-        <TextBox x:Name="tbProcess" HorizontalAlignment="Left" Height="32" Margin="281,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="192"/>
-        <Label x:Name="lblProcessName" Content="Process name" HorizontalAlignment="Left" Margin="281,10,0,0" VerticalAlignment="Top" Width="91"/>
-        <Label x:Name="lblClock" Content="00:00:00" HorizontalAlignment="Left" Margin="352,236,0,0" VerticalAlignment="Top" Width="67" FontSize="14.667"/>
+
+        <ListView x:Name="lvProcess" MaxWidth="400" HorizontalAlignment="Left" ItemsSource="{Binding SourceCollection}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" Width="Auto" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="ID" Width="Auto" DisplayMemberBinding="{Binding ID}"/>
+                    <GridViewColumn Header="Threads" Width="Auto" DisplayMemberBinding="{Binding Threads}"/>
+                    <GridViewColumn Header="%Memory" Width="Auto" DisplayMemberBinding="{Binding Memory}"/>
+                    <GridViewColumn Header="%CPU" Width="Auto" DisplayMemberBinding="{Binding CPU}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        
+        <Grid HorizontalAlignment="Right" Height="280" Margin="309,10,0,0" VerticalAlignment="Top" Width="280">
+            <TextBox x:Name="tbProcess" HorizontalAlignment="Left" Height="32" Margin="62,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="192"/>
+            <Label x:Name="lblProcessName" Content="Process name" HorizontalAlignment="Left" Margin="62,10,0,0" VerticalAlignment="Top" Width="91"/>
+            <Button x:Name="btnRun" Content="Run" HorizontalAlignment="Left" Margin="62,78,0,0" VerticalAlignment="Top" Width="110" Height="50" Click="btnRun_Click"/>
+            <Label x:Name="lblClock" Content="00:00:00" HorizontalAlignment="Left" Margin="62,240,0,0" VerticalAlignment="Top" Width="67" FontSize="14.667"/>
+            <Label x:Name="lblClockName" Content="CPU Time" HorizontalAlignment="Left" Margin="62,214,0,0" VerticalAlignment="Top" FontSize="14.667"/>
+        </Grid>
     </Grid>
 </UserControl>
