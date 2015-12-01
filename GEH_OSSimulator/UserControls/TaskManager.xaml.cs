@@ -41,7 +41,7 @@ namespace GEH_OSSimulator.UserControls
         DispatcherTimer timer = new DispatcherTimer();
         Stopwatch stopwatch = new Stopwatch();
         long ram = 512;
-
+        
         private TaskManager()
         {
             InitializeComponent();
@@ -52,14 +52,17 @@ namespace GEH_OSSimulator.UserControls
                 long ramP = (ws / ram)%100;
                 int usoCPU = r.Next(1, 50);
                 long usoDisco = (ramP + r.Next(1, 25))%100;
-                long paged = p.PagedSystemMemorySize64;
-                long nonPaged = p.NonpagedSystemMemorySize64;
-
+                
                 lvProcess.Items.Add(new MyItem { Name = p.ProcessName, ID = p.Id, Threads = p.Threads.Count, Memory = ramP, CPU = usoCPU, Disk = usoDisco});
-                lblPaged.Content = paged.ToString();
-                lblNonPaged.Content = nonPaged.ToString();
-
             }
+            int paged = r.Next(750, 860);
+            int nonpaged = r.Next(450, 550);
+            int totalMemory = r.Next(55, 65);
+            int totalCPU = r.Next(30, 55);
+            lblPaged.Content = paged.ToString() + " MB";
+            lblNonPaged.Content = nonpaged.ToString() + " MB";
+            lblTotalMem.Content = totalMemory.ToString() + " %";
+            lblTotalCPUu.Content = totalCPU.ToString() + " %";
 
             timer.Tick += new EventHandler(timer_Tick);
             timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
