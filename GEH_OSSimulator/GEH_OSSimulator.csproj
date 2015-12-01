@@ -87,6 +87,9 @@
     <Compile Include="UserControls\ProgramIcon.xaml.cs">
       <DependentUpon>ProgramIcon.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\SystemShutdown.xaml.cs">
+      <DependentUpon>SystemShutdown.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\TaskManager.xaml.cs">
       <DependentUpon>TaskManager.xaml</DependentUpon>
     </Compile>
@@ -126,6 +129,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\ProgramIcon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\SystemShutdown.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

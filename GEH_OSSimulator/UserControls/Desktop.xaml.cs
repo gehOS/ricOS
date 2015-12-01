@@ -47,6 +47,8 @@ namespace GEH_OSSimulator.UserControls
             {
                 this.lblHora.Content = DateTime.Now.ToString("HH:mm:ss");
             }, this.Dispatcher);
+            StartMenuGrid.Visibility = System.Windows.Visibility.Collapsed;
+
         }
 
         void CreateProgramIcon(string url, UserControl programUc, string processName) {
@@ -97,6 +99,28 @@ namespace GEH_OSSimulator.UserControls
 
         public delegate void ProgramOpened(ProgramChildWindow programUC);
         public event ProgramOpened OnProgramOpened;
+
+        private void HomeButton_Checked(object sender, RoutedEventArgs e)
+        {
+            StartMenuGrid.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        private void HomeButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            StartMenuGrid.Visibility = System.Windows.Visibility.Collapsed;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var result = MessageBox.Show("Seguro que desea apagar el sistema?", "Apagado de sistema", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes) {
+                if (OnSystemShutdown != null)
+                    OnSystemShutdown();
+            }
+        }
+
+        public delegate void SystemShutdown();
+        public event SystemShutdown OnSystemShutdown;
 
     }
 }
