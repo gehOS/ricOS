@@ -39,10 +39,10 @@ namespace GEH_OSSimulator.UserControls
         {
             InitializeComponent();
             this.DataContext = ViewModel;
-            CreateProgramIcon(@"http://icons.iconarchive.com/icons/dakirby309/windows-8-metro/256/Apps-Task-Manager-alt-2-Metro-icon.png", TaskManager.Instance , "Task Manager");
+            CreateProgramIcon(@"http://icons.iconarchive.com/icons/dakirby309/windows-8-metro/256/Apps-Task-Manager-alt-2-Metro-icon.png", TaskManager.Instance , "TaskManager");
             CreateProgramIcon(@"http://icons.iconarchive.com/icons/tpdkdesign.net/refresh-cl/256/Windows-Run-icon.png", RunApp.Instance, "Run");
             CreateProgramIcon(@"https://cdn2.iconfinder.com/data/icons/metro-uinvert-dock/256/Other_Antivirus_Software.png", Antivirus.Instance, "Antivirus");
-            CreateProgramIcon(@"https://upload.wikimedia.org/wikipedia/en/2/2a/Notepad.png", new NotePad(), "Notepad");
+            CreateProgramIcon(@"https://upload.wikimedia.org/wikipedia/en/2/2a/Notepad.png", NotePad.Instance, "Notepad");
             DispatcherTimer dt = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
             {
                 this.lblHora.Content = DateTime.Now.ToString("HH:mm:ss");
@@ -60,17 +60,35 @@ namespace GEH_OSSimulator.UserControls
                 ProgramUC = new ProgramChildWindow(),
                 ProcessName = processName
             };
+            taskManager.ProgramUC.IsEnabled = false;
             taskManager.ProgramUC.ProcessName = processName;
             taskManager.ProgramUC.Root.Children.Add(programUc);
             taskManager.IconImage.Source = imageBrush.ImageSource;
+
+            if(programUc.GetType() == typeof(TaskManager))
+                ((TaskManager)programUc).OnProcessClosed += Desktop_OnProcessClosed;
 
             taskManager.OnLoadUserControl += taskManager_OnLoadUserControl;
             IconPanel.Children.Add(taskManager);
             
         }
 
+        void Desktop_OnProcessClosed(string processName)
+        {
+            if (OnHideWindow != null)
+                OnHideWindow(processName);
+        }
+
+        public delegate void HideWindow(string processName);
+        public event HideWindow OnHideWindow;
+
         void taskManager_OnLoadUserControl(ProgramChildWindow userControl)
         {
+            if (!userControl.IsEnabled)
+            {
+                TaskManager.Instance.Ejecutar(userControl.ProcessName);
+                userControl.IsEnabled = true;
+            }
             if (userControl.Parent == null)
             {
                 Panel.SetZIndex(userControl, Singleton.ZIndex);
@@ -84,15 +102,14 @@ namespace GEH_OSSimulator.UserControls
             }
             else {
                 userControl.Show();
-  
+                
             }
-            TaskManager.Instance.Ejecutar(userControl.ProcessName);
 
         }
 
-        void userControl_OnProgramHidden(string proccessName)
+        void userControl_OnProgramHidden(string processName)
         {
-            
+            TaskManager.Instance.CerrarProceso(processName);
         }
 
         void userControl_HeaderDragDelta(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)

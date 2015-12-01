@@ -21,12 +21,14 @@
                      LostFocus="textBox_LostFocus"
                      Padding="5"
                      Text="Run..."
+                     TextChanged="textBox_TextChanged"
                      TextWrapping="Wrap" />
             <Button x:Name="button"
                     Width="100"
                     Margin="15"
                     VerticalAlignment="Bottom"
-                    Content="Run!" />
+                    Content="Run!"
+                    Click="button_Click"/>
         </StackPanel>
     </Grid>
 </UserControl>

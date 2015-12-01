@@ -20,6 +20,20 @@ namespace GEH_OSSimulator.UserControls.Programas
     /// </summary>
     public partial class NotePad : UserControl
     {
+        private static NotePad _instance;
+        public static NotePad Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = new NotePad();
+                return _instance;
+            }
+            set
+            {
+                _instance = value;
+            }
+        }
         public NotePad()
         {
             InitializeComponent();

@@ -29,6 +29,9 @@ namespace GEH_OSSimulator.UserControls.Programas
         protected override void OnCloseButtonClicked(RoutedEventArgs e)
         {
             base.OnCloseButtonClicked(e);
+            if (OnProgramHidden != null)
+                OnProgramHidden(ProcessName);
+            this.IsEnabled = false;
         }
 
         public delegate void ProgramHidden(string proccessName);

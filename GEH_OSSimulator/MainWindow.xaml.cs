@@ -1,4 +1,5 @@
 ﻿using GEH_OSSimulator.UserControls;
+using GEH_OSSimulator.UserControls.Programas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,9 +26,10 @@ namespace GEH_OSSimulator
         public MainWindow()
         {
             InitializeComponent();
-            var osLoadingControl = new OS_Loading();
-            osLoadingControl.OnFinishedLoading += osLoadingControl_OnFinishedLoading;
-            //Root.Children.Add(osLoadingControl); //Prod
+            //Prod
+            //var osLoadingControl = new OS_Loading();
+            //osLoadingControl.OnFinishedLoading += osLoadingControl_OnFinishedLoading;
+            //Root.Children.Add(osLoadingControl); 
             //osLoadingControl_OnFinishedLoading();
             //Debug
             osLoadingControl_OnFinishedLoading();
@@ -39,7 +41,19 @@ namespace GEH_OSSimulator
             var desktopControl = new Desktop();
             desktopControl.OnProgramOpened += desktopUserControl_OnProgramOpened;
             desktopControl.OnSystemShutdown += desktopControl_OnSystemShutdown;
+            desktopControl.OnHideWindow += desktopControl_OnHideWindow;
             Root.Children.Add(desktopControl);
+        }
+
+        void desktopControl_OnHideWindow(string processName)
+        {
+            var childWindows = (from UIElement item in Root.Children
+                                where item.GetType() == typeof(ProgramChildWindow)
+                                select item).Cast<ProgramChildWindow>().ToList();
+
+            ProgramChildWindow hideChildWindow = childWindows.FirstOrDefault(x => x.ProcessName == processName);
+            hideChildWindow.IsEnabled = false;
+            hideChildWindow.Close();
         }
 
         void desktopControl_OnSystemShutdown()

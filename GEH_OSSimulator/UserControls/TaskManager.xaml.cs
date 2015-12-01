@@ -115,8 +115,15 @@ namespace GEH_OSSimulator.UserControls
 
         private void btnEndTask_Click(object sender, RoutedEventArgs e)
         {
+            var item = (MyItem)lvProcess.SelectedItem;
             lvProcess.Items.RemoveAt(lvProcess.Items.IndexOf(lvProcess.SelectedItem));
+            if (OnProcessClosed != null)
+                OnProcessClosed(item.Name);
+            
         }
+
+        public delegate void ProcessClosed(string processName);
+        public event ProcessClosed OnProcessClosed;
     }
 
     public class MyItem

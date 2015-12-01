@@ -37,6 +37,7 @@ namespace GEH_OSSimulator.UserControls.Programas
         private RunApp()
         {
             InitializeComponent();
+            button.IsEnabled = false;
         }
 
         private void textBox_GotFocus(object sender, RoutedEventArgs e)
@@ -46,7 +47,21 @@ namespace GEH_OSSimulator.UserControls.Programas
 
         private void textBox_LostFocus(object sender, RoutedEventArgs e)
         {
+            
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            TaskManager.Instance.Ejecutar(textBox.Text);
             textBox.Text = "Run...";
+        }
+
+        private void textBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (textBox.Text.Length > 0 && textBox.Text != "Run...")
+                button.IsEnabled = true;
+            else if(button != null)
+                button.IsEnabled = false;
         }
     }
 }
