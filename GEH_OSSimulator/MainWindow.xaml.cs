@@ -36,7 +36,21 @@ namespace GEH_OSSimulator
             Root.Children.Clear();
             var desktopControl = new Desktop();
             desktopControl.OnProgramOpened += desktopUserControl_OnProgramOpened;
+            desktopControl.OnSystemShutdown += desktopControl_OnSystemShutdown;
             Root.Children.Add(desktopControl);
+        }
+
+        void desktopControl_OnSystemShutdown()
+        {
+            Root.Children.Clear();
+            var shutdown = new SystemShutdown();
+            shutdown.OnClose += shutdown_OnClose;
+            Root.Children.Add(shutdown);
+        }
+
+        void shutdown_OnClose()
+        {
+            this.Close();
         }
 
         void desktopUserControl_OnProgramOpened(ChildWindow programUC)

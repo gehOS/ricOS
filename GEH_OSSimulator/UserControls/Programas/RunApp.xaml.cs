@@ -38,5 +38,15 @@ namespace GEH_OSSimulator.UserControls.Programas
         {
             InitializeComponent();
         }
+
+        private void textBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            textBox.Text = "";
+        }
+
+        private void textBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            textBox.Text = "Run...";
+        }
     }
 }
