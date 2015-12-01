@@ -60,6 +60,7 @@ namespace GEH_OSSimulator.UserControls
                 ProgramUC = new ProgramChildWindow(),
                 ProcessName = processName
             };
+            taskManager.ProgramUC.ProcessName = processName;
             taskManager.ProgramUC.Root.Children.Add(programUc);
             taskManager.IconImage.Source = imageBrush.ImageSource;
 
@@ -72,15 +73,43 @@ namespace GEH_OSSimulator.UserControls
         {
             if (userControl.Parent == null)
             {
-                Panel.SetZIndex(userControl, 100);
+                Panel.SetZIndex(userControl, Singleton.ZIndex);
                 if (OnProgramOpened != null)
                     OnProgramOpened(userControl);
+                userControl.MouseLeftButtonDown += userControl_MouseLeftButtonDown;
+                userControl.GotFocus += userControl_GotFocus;
+                userControl.HeaderDragDelta += userControl_HeaderDragDelta;
+                userControl.OnProgramHidden += userControl_OnProgramHidden;
+                
             }
             else {
-                userControl.Show();   
+                userControl.Show();
+  
             }
+            TaskManager.Instance.Ejecutar(userControl.ProcessName);
 
         }
+
+        void userControl_OnProgramHidden(string proccessName)
+        {
+            
+        }
+
+        void userControl_HeaderDragDelta(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
+        {
+            ((UIElement)sender).Focus();
+        }
+
+        void userControl_GotFocus(object sender, RoutedEventArgs e)
+        {
+            Panel.SetZIndex((UIElement)sender, Singleton.ZIndex);
+        }
+
+        void userControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            ((UIElement)sender).Focus();
+        }
+
 
 
 

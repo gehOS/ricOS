@@ -27,8 +27,10 @@ namespace GEH_OSSimulator
             InitializeComponent();
             var osLoadingControl = new OS_Loading();
             osLoadingControl.OnFinishedLoading += osLoadingControl_OnFinishedLoading;
-            Root.Children.Add(osLoadingControl);
+            //Root.Children.Add(osLoadingControl); //Prod
             //osLoadingControl_OnFinishedLoading();
+            //Debug
+            osLoadingControl_OnFinishedLoading();
         }
 
         void osLoadingControl_OnFinishedLoading()

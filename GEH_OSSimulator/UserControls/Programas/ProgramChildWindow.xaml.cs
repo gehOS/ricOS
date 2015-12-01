@@ -20,9 +20,19 @@ namespace GEH_OSSimulator.UserControls.Programas
     /// </summary>
     public partial class ProgramChildWindow : ChildWindow
     {
+        public string ProcessName { get; set; }
         public ProgramChildWindow()
         {
             InitializeComponent();
         }
+
+        protected override void OnCloseButtonClicked(RoutedEventArgs e)
+        {
+            base.OnCloseButtonClicked(e);
+        }
+
+        public delegate void ProgramHidden(string proccessName);
+        public event ProgramHidden OnProgramHidden;
+
     }
 }
