@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace GEH_OSSimulator.UserControls
 {
@@ -42,7 +43,10 @@ namespace GEH_OSSimulator.UserControls
             CreateProgramIcon(@"http://icons.iconarchive.com/icons/tpdkdesign.net/refresh-cl/256/Windows-Run-icon.png", RunApp.Instance, "Run");
             CreateProgramIcon(@"https://cdn2.iconfinder.com/data/icons/metro-uinvert-dock/256/Other_Antivirus_Software.png", Antivirus.Instance, "Antivirus");
             CreateProgramIcon(@"https://upload.wikimedia.org/wikipedia/en/2/2a/Notepad.png", new NotePad(), "Notepad");
-            
+            DispatcherTimer dt = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
+            {
+                this.lblHora.Content = DateTime.Now.ToString("HH:mm:ss");
+            }, this.Dispatcher);
         }
 
         void CreateProgramIcon(string url, UserControl programUc, string processName) {

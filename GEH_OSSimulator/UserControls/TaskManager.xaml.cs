@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Diagnostics;
+using System.Windows.Threading;
 
 namespace GEH_OSSimulator.UserControls
 {
@@ -35,6 +36,11 @@ namespace GEH_OSSimulator.UserControls
                 _instance = value;
             }
         }
+
+        string currentTime;
+        DispatcherTimer timer = new DispatcherTimer();
+        Stopwatch stopwatch = new Stopwatch();
+
         private TaskManager()
         {
             InitializeComponent();
@@ -44,6 +50,19 @@ namespace GEH_OSSimulator.UserControls
                 string process = string.Format("{0} | {1} | {2}", p.ProcessName, p.Id, p.Threads.Count);
                 lbProcesses.Items.Add(process);
             }
+
+            timer.Tick += new EventHandler(timer_Tick);
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
+            timer.Start();
+            stopwatch.Start();
+
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            TimeSpan ts = stopwatch.Elapsed;
+            currentTime = string.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds);
+            lblClock.Content = currentTime;
         }
 
         private void btnRun_Click(object sender, RoutedEventArgs e)
