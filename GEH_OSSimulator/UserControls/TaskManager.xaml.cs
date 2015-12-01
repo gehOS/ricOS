@@ -45,12 +45,11 @@ namespace GEH_OSSimulator.UserControls
         private TaskManager()
         {
             InitializeComponent();
-
+            Random r = new Random();
             foreach (Process p in Process.GetProcesses())
             {
                 long ws = p.WorkingSet64 / 1024;
                 long ramP = (ws / ram)%100;
-                Random r = new Random();
                 int usoCPU = r.Next(1, 50);
 
                 lvProcess.Items.Add(new MyItem { Name = p.ProcessName, ID = p.Id, Threads = p.Threads.Count, Memory = ramP, CPU = usoCPU});
@@ -77,9 +76,9 @@ namespace GEH_OSSimulator.UserControls
             int processThread = r.Next(1, 40);
             string processName = tbProcess.Text;
             long memoryP = r.Next(1, 60);
-            int usoCPU = r.Next(1, 50);
+            int CPUp = r.Next(1, 50);
 
-            lvProcess.Items.Add(new MyItem { Name = processName, ID = processID, Threads = processThread, Memory = memoryP, CPU = usoCPU });
+            lvProcess.Items.Add(new MyItem { Name = processName, ID = processID, Threads = processThread, Memory = memoryP, CPU = CPUp });
 
             tbProcess.Text = string.Empty;
             tbProcess.Focus();
@@ -92,9 +91,9 @@ namespace GEH_OSSimulator.UserControls
             int HilosProceso = rand.Next(1, 40);
             string NombreProceso = proceso;
             long memoryP = rand.Next(1, 60);
-            int usoCPU = rand.Next(1, 50);
+            int PCPU = rand.Next(1, 50);
 
-            lvProcess.Items.Add(new MyItem { Name = NombreProceso, ID = IDproceso, Threads = HilosProceso, Memory = memoryP, CPU = usoCPU });
+            lvProcess.Items.Add(new MyItem { Name = NombreProceso, ID = IDproceso, Threads = HilosProceso, Memory = memoryP, CPU = PCPU });
         }
     }
 
