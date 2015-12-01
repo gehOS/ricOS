@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:GEH_OSSimulator"
              mc:Ignorable="d" 
              d:DesignHeight="300" Width="637.509">
-    <Grid>
+    <Grid Margin="0,0,-25,0">
 
         <ListView x:Name="lvProcess" MaxWidth="400" HorizontalAlignment="Left" ItemsSource="{Binding SourceCollection}">
             <ListView.View>
@@ -20,13 +20,18 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        
+
         <Grid HorizontalAlignment="Right" Height="280" Margin="309,10,0,0" VerticalAlignment="Top" Width="280">
-            <TextBox x:Name="tbProcess" HorizontalAlignment="Left" Height="32" Margin="62,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="192"/>
-            <Label x:Name="lblProcessName" Content="Process name" HorizontalAlignment="Left" Margin="62,10,0,0" VerticalAlignment="Top" Width="91"/>
-            <Button x:Name="btnRun" Content="Run" HorizontalAlignment="Left" Margin="62,78,0,0" VerticalAlignment="Top" Width="110" Height="50" Click="btnRun_Click"/>
-            <Label x:Name="lblClock" Content="00:00:00" HorizontalAlignment="Left" Margin="62,240,0,0" VerticalAlignment="Top" Width="67" FontSize="14.667"/>
-            <Label x:Name="lblClockName" Content="CPU Time" HorizontalAlignment="Left" Margin="62,214,0,0" VerticalAlignment="Top" FontSize="14.667"/>
+            <TextBox x:Name="tbProcess" HorizontalAlignment="Left" Height="32" Margin="28,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="192"/>
+            <Label x:Name="lblProcessName" Content="Process name" HorizontalAlignment="Left" Margin="28,10,0,0" VerticalAlignment="Top" Width="91"/>
+            <Button x:Name="btnRun" Content="Run" HorizontalAlignment="Left" Margin="28,78,0,0" VerticalAlignment="Top" Width="91" Height="38" Click="btnRun_Click"/>
+            <Label x:Name="lblClock" Content="00:00:00" HorizontalAlignment="Left" Margin="28,189,0,0" VerticalAlignment="Top" Width="67" FontSize="14.667"/>
+            <Label x:Name="lblClockName" Content="CPU Time" HorizontalAlignment="Left" Margin="22,159,0,0" VerticalAlignment="Top" FontSize="14.667"/>
+            <Label x:Name="lblPage" Content="Paged pool" HorizontalAlignment="Left" Margin="23,220,0,0" VerticalAlignment="Top" FontSize="14.667"/>
+            <Label x:Name="lblPaged" Content="0" HorizontalAlignment="Left" Margin="28,250,0,0" VerticalAlignment="Top" Width="67" FontSize="14.667"/>
+            <Label x:Name="lblNonPage" Content="Non-paged pool" HorizontalAlignment="Left" Margin="112,220,0,0" VerticalAlignment="Top" FontSize="14.667"/>
+            <Label x:Name="lblNonPaged" Content="0" HorizontalAlignment="Left" Margin="112,250,0,0" VerticalAlignment="Top" Width="67" FontSize="14.667"/>
+            <Button x:Name="btnEndTask" Content="End task" HorizontalAlignment="Left" Margin="139,78,0,0" VerticalAlignment="Top" Width="91" Height="38" Click="btnEndTask_Click"/>
         </Grid>
     </Grid>
 </UserControl>

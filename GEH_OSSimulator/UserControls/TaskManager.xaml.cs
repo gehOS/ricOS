@@ -52,8 +52,13 @@ namespace GEH_OSSimulator.UserControls
                 long ramP = (ws / ram)%100;
                 int usoCPU = r.Next(1, 50);
                 long usoDisco = (ramP + r.Next(1, 25))%100;
+                long paged = p.PagedSystemMemorySize64;
+                long nonPaged = p.NonpagedSystemMemorySize64;
 
                 lvProcess.Items.Add(new MyItem { Name = p.ProcessName, ID = p.Id, Threads = p.Threads.Count, Memory = ramP, CPU = usoCPU, Disk = usoDisco});
+                lblPaged.Content = paged.ToString();
+                lblNonPaged.Content = nonPaged.ToString();
+
             }
 
             timer.Tick += new EventHandler(timer_Tick);
@@ -97,6 +102,20 @@ namespace GEH_OSSimulator.UserControls
             long usoDisco = rand.Next(1, 25);
 
             lvProcess.Items.Add(new MyItem { Name = NombreProceso, ID = IDproceso, Threads = HilosProceso, Memory = memoryP, CPU = PCPU, Disk = usoDisco });
+        }
+
+        public void CerrarProceso(string processName)
+        {
+            var selected = (from MyItem item in lvProcess.Items
+                           where item.Name == processName
+                           select item).FirstOrDefault();
+
+            lvProcess.Items.RemoveAt(lvProcess.Items.IndexOf(selected));
+        }
+
+        private void btnEndTask_Click(object sender, RoutedEventArgs e)
+        {
+            lvProcess.Items.RemoveAt(lvProcess.Items.IndexOf(lvProcess.SelectedItem));
         }
     }
 
