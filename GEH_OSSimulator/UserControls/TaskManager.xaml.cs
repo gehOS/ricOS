@@ -40,6 +40,7 @@ namespace GEH_OSSimulator.UserControls
         string currentTime;
         DispatcherTimer timer = new DispatcherTimer();
         Stopwatch stopwatch = new Stopwatch();
+        long ram = 512;
 
         private TaskManager()
         {
@@ -47,8 +48,12 @@ namespace GEH_OSSimulator.UserControls
 
             foreach (Process p in Process.GetProcesses())
             {
-                string process = string.Format("{0} | {1} | {2}", p.ProcessName, p.Id, p.Threads.Count);
-                lbProcesses.Items.Add(process);
+                long ws = p.WorkingSet64 / 1024;
+                long ramP = (ws / ram)%100;
+                Random r = new Random();
+                int usoCPU = r.Next(1, 50);
+
+                lvProcess.Items.Add(new MyItem { Name = p.ProcessName, ID = p.Id, Threads = p.Threads.Count, Memory = ramP, CPU = usoCPU});
             }
 
             timer.Tick += new EventHandler(timer_Tick);
@@ -71,9 +76,10 @@ namespace GEH_OSSimulator.UserControls
             int processID = r.Next(1, 9999);
             int processThread = r.Next(1, 40);
             string processName = tbProcess.Text;
+            long memoryP = r.Next(1, 60);
+            int usoCPU = r.Next(1, 50);
 
-            string UserProcess = string.Format("{0} | {1} | {2}", processName, processID.ToString(), processThread.ToString());
-            lbProcesses.Items.Add(UserProcess);
+            lvProcess.Items.Add(new MyItem { Name = processName, ID = processID, Threads = processThread, Memory = memoryP, CPU = usoCPU });
 
             tbProcess.Text = string.Empty;
             tbProcess.Focus();
@@ -85,9 +91,19 @@ namespace GEH_OSSimulator.UserControls
             int IDproceso = rand.Next(1, 9999);
             int HilosProceso = rand.Next(1, 40);
             string NombreProceso = proceso;
+            long memoryP = rand.Next(1, 60);
+            int usoCPU = rand.Next(1, 50);
 
-            string ProcesoInput = string.Format("{0} | {1} | {2}", NombreProceso, IDproceso.ToString(), HilosProceso.ToString());
-            lbProcesses.Items.Add(ProcesoInput);
+            lvProcess.Items.Add(new MyItem { Name = NombreProceso, ID = IDproceso, Threads = HilosProceso, Memory = memoryP, CPU = usoCPU });
         }
+    }
+
+    public class MyItem
+    {
+        public string Name { get; set; }
+        public int ID { get; set; }
+        public int Threads { get; set; }
+        public long Memory { get; set; }
+        public int CPU { get; set; }
     }
 }
