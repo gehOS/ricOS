@@ -8,7 +8,7 @@
              d:DesignHeight="300" Width="637.509">
     <Grid Margin="0,0,-25,0">
 
-        <ListView x:Name="lvProcess" MaxWidth="400" HorizontalAlignment="Left" ItemsSource="{Binding SourceCollection}">
+        <ListView x:Name="lvProcess" MaxWidth="370" MaxHeight="400" HorizontalAlignment="Left" ItemsSource="{Binding SourceCollection}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Name" Width="Auto" DisplayMemberBinding="{Binding Name}"/>
@@ -21,17 +21,21 @@
             </ListView.View>
         </ListView>
 
-        <Grid HorizontalAlignment="Right" Height="280" Margin="309,10,0,0" VerticalAlignment="Top" Width="280">
-            <TextBox x:Name="tbProcess" HorizontalAlignment="Left" Height="32" Margin="28,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="192"/>
-            <Label x:Name="lblProcessName" Content="Process name" HorizontalAlignment="Left" Margin="28,10,0,0" VerticalAlignment="Top" Width="91"/>
-            <Button x:Name="btnRun" Content="Run" HorizontalAlignment="Left" Margin="28,78,0,0" VerticalAlignment="Top" Width="91" Height="38" Click="btnRun_Click"/>
-            <Label x:Name="lblClock" Content="00:00:00" HorizontalAlignment="Left" Margin="28,189,0,0" VerticalAlignment="Top" Width="67" FontSize="14.667"/>
-            <Label x:Name="lblClockName" Content="CPU Time" HorizontalAlignment="Left" Margin="22,159,0,0" VerticalAlignment="Top" FontSize="14.667"/>
-            <Label x:Name="lblPage" Content="Paged pool" HorizontalAlignment="Left" Margin="23,220,0,0" VerticalAlignment="Top" FontSize="14.667"/>
-            <Label x:Name="lblPaged" Content="0" HorizontalAlignment="Left" Margin="28,250,0,0" VerticalAlignment="Top" Width="67" FontSize="14.667"/>
-            <Label x:Name="lblNonPage" Content="Non-paged pool" HorizontalAlignment="Left" Margin="112,220,0,0" VerticalAlignment="Top" FontSize="14.667"/>
-            <Label x:Name="lblNonPaged" Content="0" HorizontalAlignment="Left" Margin="112,250,0,0" VerticalAlignment="Top" Width="67" FontSize="14.667"/>
-            <Button x:Name="btnEndTask" Content="End task" HorizontalAlignment="Left" Margin="139,78,0,0" VerticalAlignment="Top" Width="91" Height="38" Click="btnEndTask_Click"/>
+        <Grid HorizontalAlignment="Right" Height="280" Margin="0,10,10,0" VerticalAlignment="Top" Width="280">
+            <TextBox x:Name="tbProcess" HorizontalAlignment="Left" Height="32" Margin="18,36,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="192"/>
+            <Label x:Name="lblProcessName" Content="Process name" HorizontalAlignment="Left" Margin="18,5,0,0" VerticalAlignment="Top" Width="91"/>
+            <Button x:Name="btnRun" Content="Run" HorizontalAlignment="Left" Margin="18,73,0,0" VerticalAlignment="Top" Width="91" Height="28" Click="btnRun_Click"/>
+            <Label x:Name="lblClock" Content="00:00:00" HorizontalAlignment="Left" Margin="18,141,0,0" VerticalAlignment="Top" Width="67" FontSize="12"/>
+            <Label x:Name="lblClockName" Content="CPU Time" HorizontalAlignment="Left" Margin="12,111,0,0" VerticalAlignment="Top" FontSize="12"/>
+            <Label x:Name="lblPage" Content="Paged pool" HorizontalAlignment="Left" Margin="13,172,0,0" VerticalAlignment="Top" FontSize="12"/>
+            <Label x:Name="lblPaged" Content="0" HorizontalAlignment="Left" Margin="18,188,0,0" VerticalAlignment="Top" Width="67" FontSize="12"/>
+            <Label x:Name="lblNonPage" Content="Non-paged pool" HorizontalAlignment="Left" Margin="102,172,0,0" VerticalAlignment="Top" FontSize="12"/>
+            <Label x:Name="lblNonPaged" Content="0" HorizontalAlignment="Left" Margin="102,187,0,0" VerticalAlignment="Top" Width="67" FontSize="12"/>
+            <Button x:Name="btnEndTask" Content="End task" HorizontalAlignment="Left" Margin="129,73,0,0" VerticalAlignment="Top" Width="91" Height="28" Click="btnEndTask_Click"/>
+            <Label x:Name="lblTotalM" Content="Total memory usage" HorizontalAlignment="Left" Margin="12,228,0,0" VerticalAlignment="Top" FontSize="12" Width="120"/>
+            <Label x:Name="lblTotalCPU" Content="Total CPU usage" HorizontalAlignment="Left" Margin="155,228,0,0" VerticalAlignment="Top" FontSize="12" Width="98"/>
+            <Label x:Name="lblTotalMem" Content="0" HorizontalAlignment="Left" Margin="18,244,0,0" VerticalAlignment="Top" Width="67" FontSize="12"/>
+            <Label x:Name="lblTotalCPUu" Content="0" HorizontalAlignment="Left" Margin="164,244,0,0" VerticalAlignment="Top" Width="67" FontSize="12"/>
         </Grid>
     </Grid>
 </UserControl>
