@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GEH_OSSimulator"
              mc:Ignorable="d" 
-             d:DesignHeight="300" Width="598.872">
+             d:DesignHeight="300" Width="637.509">
     <Grid>
 
         <ListView x:Name="lvProcess" MaxWidth="400" HorizontalAlignment="Left" ItemsSource="{Binding SourceCollection}">
@@ -16,6 +16,7 @@
                     <GridViewColumn Header="Threads" Width="Auto" DisplayMemberBinding="{Binding Threads}"/>
                     <GridViewColumn Header="%Memory" Width="Auto" DisplayMemberBinding="{Binding Memory}"/>
                     <GridViewColumn Header="%CPU" Width="Auto" DisplayMemberBinding="{Binding CPU}"/>
+                    <GridViewColumn Header="%Disk" Width="Auto" DisplayMemberBinding="{Binding Disk}"/>
                 </GridView>
             </ListView.View>
         </ListView>

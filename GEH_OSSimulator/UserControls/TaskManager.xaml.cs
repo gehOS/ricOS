@@ -51,8 +51,9 @@ namespace GEH_OSSimulator.UserControls
                 long ws = p.WorkingSet64 / 1024;
                 long ramP = (ws / ram)%100;
                 int usoCPU = r.Next(1, 50);
+                long usoDisco = (ramP + r.Next(1, 25))%100;
 
-                lvProcess.Items.Add(new MyItem { Name = p.ProcessName, ID = p.Id, Threads = p.Threads.Count, Memory = ramP, CPU = usoCPU});
+                lvProcess.Items.Add(new MyItem { Name = p.ProcessName, ID = p.Id, Threads = p.Threads.Count, Memory = ramP, CPU = usoCPU, Disk = usoDisco});
             }
 
             timer.Tick += new EventHandler(timer_Tick);
@@ -77,8 +78,9 @@ namespace GEH_OSSimulator.UserControls
             string processName = tbProcess.Text;
             long memoryP = r.Next(1, 60);
             int CPUp = r.Next(1, 50);
+            long usoDisco = r.Next(1, 25);
 
-            lvProcess.Items.Add(new MyItem { Name = processName, ID = processID, Threads = processThread, Memory = memoryP, CPU = CPUp });
+            lvProcess.Items.Add(new MyItem { Name = processName, ID = processID, Threads = processThread, Memory = memoryP, CPU = CPUp, Disk = usoDisco });
 
             tbProcess.Text = string.Empty;
             tbProcess.Focus();
@@ -92,8 +94,9 @@ namespace GEH_OSSimulator.UserControls
             string NombreProceso = proceso;
             long memoryP = rand.Next(1, 60);
             int PCPU = rand.Next(1, 50);
+            long usoDisco = rand.Next(1, 25);
 
-            lvProcess.Items.Add(new MyItem { Name = NombreProceso, ID = IDproceso, Threads = HilosProceso, Memory = memoryP, CPU = PCPU });
+            lvProcess.Items.Add(new MyItem { Name = NombreProceso, ID = IDproceso, Threads = HilosProceso, Memory = memoryP, CPU = PCPU, Disk = usoDisco });
         }
     }
 
@@ -104,5 +107,6 @@ namespace GEH_OSSimulator.UserControls
         public int Threads { get; set; }
         public long Memory { get; set; }
         public int CPU { get; set; }
+        public long Disk { get; set; }
     }
 }
