@@ -50,6 +50,8 @@ namespace GEH_OSSimulator.UserControls.Programas
                 labelporcen.Content = "100% completed...";
                 dispatcherTimer.Stop();
                 btnStart.IsEnabled = true;
+                TaskManager.Instance.ModificarMemoriaCPU(0, -25);
+                MessageBox.Show("Su sistema está libre de virus.");
             }
 
             if (i == 200)
@@ -87,6 +89,7 @@ namespace GEH_OSSimulator.UserControls.Programas
             dispatcherTimer.Tick += dispatcherTimer_Tick;
             dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 1);
             dispatcherTimer.Start();
+            TaskManager.Instance.ModificarMemoriaCPU(0, 25);
         }
     }
 }

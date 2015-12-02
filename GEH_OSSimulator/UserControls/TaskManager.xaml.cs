@@ -37,38 +37,56 @@ namespace GEH_OSSimulator.UserControls
             }
         }
 
+        public List<Process> AllProcesses { get; set; }
+
         string currentTime;
         DispatcherTimer timer = new DispatcherTimer();
+        DispatcherTimer timerDos = new DispatcherTimer();
         Stopwatch stopwatch = new Stopwatch();
         long ram = 512;
+
+        int paged;
+        int nonpaged;
+        int totalMemory;
+        int totalCPU;
         
         private TaskManager()
         {
             InitializeComponent();
-            Random r = new Random();
-            foreach (Process p in Process.GetProcesses())
-            {
-                long ws = p.WorkingSet64 / 1024;
-                long ramP = (ws / ram)%100;
-                int usoCPU = r.Next(1, 50);
-                long usoDisco = (ramP + r.Next(1, 25))%100;
-                
-                lvProcess.Items.Add(new MyItem { Name = p.ProcessName, ID = p.Id, Threads = p.Threads.Count, Memory = ramP, CPU = usoCPU, Disk = usoDisco});
-            }
-            int paged = r.Next(750, 860);
-            int nonpaged = r.Next(450, 550);
-            int totalMemory = r.Next(55, 65);
-            int totalCPU = r.Next(30, 55);
+            AllProcesses = new List<Process>();
+            AllProcesses.AddRange(Process.GetProcesses());
+            var r = new Random();
+            paged = r.Next(750, 860);
+            nonpaged = r.Next(450, 550);
+            totalMemory = r.Next(55, 65);
+            totalCPU = r.Next(30, 55);
             lblPaged.Content = paged.ToString() + " MB";
             lblNonPaged.Content = nonpaged.ToString() + " MB";
-            lblTotalMem.Content = totalMemory.ToString();
-            lblTotalCPUu.Content = totalCPU.ToString();
+            lblTotalMem.Content = totalMemory.ToString() + " %";
+            lblTotalCPUu.Content = totalCPU.ToString() + " %";
+            foreach (Process p in AllProcesses)
+            {
+                long ws = p.WorkingSet64 / 1024;
+                long ramP = (ws / ram) % 100;
+                int usoCPU = r.Next(1, 50);
+                long usoDisco = (ramP + r.Next(1, 25)) % 100;
+
+                lvProcess.Items.Add(new MyItem { Name = p.ProcessName, ID = p.Id, Threads = p.Threads.Count, Memory = ramP, CPU = usoCPU, Disk = usoDisco });
+            }
 
             timer.Tick += new EventHandler(timer_Tick);
+            timerDos.Tick += timerDos_Tick;
+            timerDos.Interval = new TimeSpan(0, 0, 2);
             timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
             timer.Start();
             stopwatch.Start();
+            timerDos.Start();
 
+        }
+
+        void timerDos_Tick(object sender, EventArgs e)
+        {
+            ReloadInfo();
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -77,6 +95,35 @@ namespace GEH_OSSimulator.UserControls
             currentTime = string.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds);
             lblClock.Content = currentTime;
         }
+
+        int multiplier = 1;
+        void ReloadInfo() {
+            Random r = new Random();
+            multiplier = multiplier * -1;
+            var processItems = lvProcess.Items.Cast<MyItem>().ToList();
+            lvProcess.Items.Clear();
+            foreach (var obj in processItems) {
+                var item = (MyItem)obj;
+                item.CPU += (item.CPU / 10)*multiplier;
+                item.Memory += (item.Memory / 10) * multiplier;
+                item.Disk += (item.Disk / 10) * multiplier;
+                lvProcess.Items.Add(item);
+            }
+
+            paged += (paged / 10) * multiplier;
+            nonpaged += (nonpaged / 10) * multiplier;
+            totalMemory += (totalMemory/ 10) * multiplier;
+            totalCPU += (totalCPU / 10) * multiplier;
+
+
+            lblPaged.Content = paged.ToString() + " MB";
+            lblNonPaged.Content = nonpaged.ToString() + " MB";
+            lblTotalMem.Content = totalMemory.ToString() + " %";
+            lblTotalCPUu.Content = totalCPU.ToString() + " %";
+
+        }
+
+
 
         private void btnRun_Click(object sender, RoutedEventArgs e)
         {
@@ -126,9 +173,19 @@ namespace GEH_OSSimulator.UserControls
         }
 
         public void ModificarMemoriaCPU(int memoria, int cpu) {
-            var totalMem = int.Parse(lblTotalMem.Content.ToString()) + memoria;
-            lblTotalMem.Content = totalMem;
-            var totalCPU = int.Parse(lblTotalCPUu.Content.ToString()) + cpu;
+            totalMemory += memoria;
+            if (totalMemory > 100)
+            {
+                totalMemory = 100;
+                MessageBox.Show("Alerta de Memoria.");
+            }
+            lblTotalMem.Content = totalMemory;
+            totalCPU += cpu;
+            if (totalCPU > 100)
+            {
+                totalCPU = 100;
+                MessageBox.Show("Alerta de Procesador.");
+            }
             lblTotalCPUu.Content = totalCPU;
         }
 
