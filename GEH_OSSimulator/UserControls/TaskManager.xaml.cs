@@ -99,6 +99,7 @@ namespace GEH_OSSimulator.UserControls
         int multiplier = 1;
         void ReloadInfo() {
             Random r = new Random();
+            var selection = lvProcess.SelectedItem;
             multiplier = multiplier * -1;
             var processItems = lvProcess.Items.Cast<MyItem>().ToList();
             lvProcess.Items.Clear();
@@ -108,6 +109,7 @@ namespace GEH_OSSimulator.UserControls
                 item.Memory += (item.Memory / 10) * multiplier;
                 item.Disk += (item.Disk / 10) * multiplier;
                 lvProcess.Items.Add(item);
+                lvProcess.SelectedItem = selection;
             }
 
             paged += (paged / 10) * multiplier;
@@ -120,7 +122,7 @@ namespace GEH_OSSimulator.UserControls
             lblNonPaged.Content = nonpaged.ToString() + " MB";
             lblTotalMem.Content = totalMemory.ToString() + " %";
             lblTotalCPUu.Content = totalCPU.ToString() + " %";
-
+            
         }
 
 
@@ -166,9 +168,17 @@ namespace GEH_OSSimulator.UserControls
         private void btnEndTask_Click(object sender, RoutedEventArgs e)
         {
             var item = (MyItem)lvProcess.SelectedItem;
-            lvProcess.Items.RemoveAt(lvProcess.Items.IndexOf(lvProcess.SelectedItem));
+
+            if(item != null)
+                lvProcess.Items.RemoveAt(lvProcess.Items.IndexOf(lvProcess.SelectedItem));
             if (OnProcessClosed != null)
-                OnProcessClosed(item.Name);
+                try {
+                    OnProcessClosed(item.Name);
+                }
+                catch
+                {
+                    MessageBox.Show("Seleccione el proceso que quiere matar");
+                }
             
         }
 
