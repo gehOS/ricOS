@@ -20,21 +20,26 @@ namespace GEH_OSSimulator.UserControls.Programas
     /// </summary>
     public partial class ProgramChildWindow : ChildWindow
     {
+        public int CPUUsage { get; set; }
+        public int MemoryUsage { get; set; }
         public string ProcessName { get; set; }
         public ProgramChildWindow()
         {
             InitializeComponent();
+            var r = new Random();
+            CPUUsage = r.Next(4, 15);
+            MemoryUsage = r.Next(2, 10);
         }
 
         protected override void OnCloseButtonClicked(RoutedEventArgs e)
         {
             base.OnCloseButtonClicked(e);
             if (OnProgramHidden != null)
-                OnProgramHidden(ProcessName);
+                OnProgramHidden(this, ProcessName);
             this.IsEnabled = false;
         }
 
-        public delegate void ProgramHidden(string proccessName);
+        public delegate void ProgramHidden(ProgramChildWindow sender, string proccessName);
         public event ProgramHidden OnProgramHidden;
 
     }

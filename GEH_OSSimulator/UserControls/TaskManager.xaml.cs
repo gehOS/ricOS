@@ -61,8 +61,8 @@ namespace GEH_OSSimulator.UserControls
             int totalCPU = r.Next(30, 55);
             lblPaged.Content = paged.ToString() + " MB";
             lblNonPaged.Content = nonpaged.ToString() + " MB";
-            lblTotalMem.Content = totalMemory.ToString() + " %";
-            lblTotalCPUu.Content = totalCPU.ToString() + " %";
+            lblTotalMem.Content = totalMemory.ToString();
+            lblTotalCPUu.Content = totalCPU.ToString();
 
             timer.Tick += new EventHandler(timer_Tick);
             timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
@@ -124,6 +124,14 @@ namespace GEH_OSSimulator.UserControls
                 OnProcessClosed(item.Name);
             
         }
+
+        public void ModificarMemoriaCPU(int memoria, int cpu) {
+            var totalMem = int.Parse(lblTotalMem.Content.ToString()) + memoria;
+            lblTotalMem.Content = totalMem;
+            var totalCPU = int.Parse(lblTotalCPUu.Content.ToString()) + cpu;
+            lblTotalCPUu.Content = totalCPU;
+        }
+
 
         public delegate void ProcessClosed(string processName);
         public event ProcessClosed OnProcessClosed;

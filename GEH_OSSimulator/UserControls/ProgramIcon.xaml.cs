@@ -51,6 +51,11 @@ namespace GEH_OSSimulator.UserControls
 
         private void ButtonSelector_Click(object sender, RoutedEventArgs e)
         {
+            if (!ProgramUC.IsEnabled)
+            {
+                TaskManager.Instance.ModificarMemoriaCPU(ProgramUC.MemoryUsage, ProgramUC.CPUUsage);    
+            }
+            
             if (OnLoadUserControl != null)
                 OnLoadUserControl(ProgramUC);
         }

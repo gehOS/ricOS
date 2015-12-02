@@ -101,14 +101,16 @@ namespace GEH_OSSimulator.UserControls
                 
             }
             else {
+                //TaskManager.Instance.ModificarMemoriaCPU(userControl.MemoryUsage, userControl.CPUUsage);
                 userControl.Show();
                 
             }
 
         }
 
-        void userControl_OnProgramHidden(string processName)
+        void userControl_OnProgramHidden(ProgramChildWindow sender, string processName)
         {
+            TaskManager.Instance.ModificarMemoriaCPU(-sender.MemoryUsage, -sender.CPUUsage);
             TaskManager.Instance.CerrarProceso(processName);
         }
 
